@@ -1,0 +1,374 @@
+Matthews-MacBook-Pro:~ matthewshields$ docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+1b930d010525: Pull complete 
+Digest: sha256:0e11c388b664df8a27a901dce21eb89f11d8292f7fca1b3e3c4321bf7897bffe
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+Matthews-MacBook-Pro:~ matthewshields$ docker run --detach --publish=80:80 --name=webserver nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+743f2d6c1f65: Pull complete 
+6bfc4ec4420a: Pull complete 
+688a776db95f: Pull complete 
+Digest: sha256:23b4dcdf0d34d4a129755fc6f52e1c6e23bb34ea011b315d87e193033bcd1b68
+Status: Downloaded newer image for nginx:latest
+5033cab832afd53a55b71421e6d78cf4c9618389d91149034796db1d8ff74e13
+Matthews-MacBook-Pro:~ matthewshields$ docker container ls
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                NAMES
+5033cab832af        nginx               "nginx -g 'daemon of…"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   webserver
+Matthews-MacBook-Pro:~ matthewshields$ docker container ls
+CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                NAMES
+5033cab832af        nginx               "nginx -g 'daemon of…"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   webserver
+Matthews-MacBook-Pro:~ matthewshields$ docker container stop webserver
+webserver
+Matthews-MacBook-Pro:~ matthewshields$ docker container ls -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                          PORTS               NAMES
+5033cab832af        nginx               "nginx -g 'daemon of…"   3 minutes ago       Exited (0) About a minute ago                       webserver
+a15f3866b5a6        hello-world         "/hello"                 6 minutes ago       Exited (0) 6 minutes ago                            eloquent_lovelace
+Matthews-MacBook-Pro:~ matthewshields$ docker container rm webserver
+webserver
+Matthews-MacBook-Pro:~ matthewshields$ docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+nginx               latest              53f3fd8007f7        2 weeks ago         109MB
+hello-world         latest              fce289e99eb9        4 months ago        1.84kB
+Matthews-MacBook-Pro:~ matthewshields$ docker container ls -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
+a15f3866b5a6        hello-world         "/hello"            7 minutes ago       Exited (0) 7 minutes ago                       eloquent_lovelace
+Matthews-MacBook-Pro:~ matthewshields$ docker image rm nginx
+Untagged: nginx:latest
+Untagged: nginx@sha256:23b4dcdf0d34d4a129755fc6f52e1c6e23bb34ea011b315d87e193033bcd1b68
+Deleted: sha256:53f3fd8007f76bd23bf663ad5f5009c8941f63828ae458cef584b5f85dc0a7bf
+Deleted: sha256:50183b8336fcc9552a55c86895cdfdfb6f1bb349a951da638f22f645ce235926
+Deleted: sha256:093a0ead7cedbef266292a1b08e478489ed6584170f0d82127c5ac9a10fd8303
+Deleted: sha256:6270adb5794c6987109e54af00ab456977c5d5cc6f1bc52c1ce58d32ec0f15f4
+Matthews-MacBook-Pro:~ matthewshields$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+Matthews-MacBook-Pro:~ matthewshields$ docker info
+Containers: 1
+ Running: 0
+ Paused: 0
+ Stopped: 1
+Images: 1
+Server Version: 18.09.2
+Storage Driver: overlay2
+ Backing Filesystem: extfs
+ Supports d_type: true
+ Native Overlay Diff: true
+Logging Driver: json-file
+Cgroup Driver: cgroupfs
+Plugins:
+ Volume: local
+ Network: bridge host macvlan null overlay
+ Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+Swarm: inactive
+Runtimes: runc
+Default Runtime: runc
+Init Binary: docker-init
+containerd version: 9754871865f7fe2f4e74d43e2fc7ccd237edcbce
+runc version: 09c8266bf2fcf9519a651b04ae54c967b9ab86ec
+init version: fec3683
+Security Options:
+ seccomp
+  Profile: default
+Kernel Version: 4.9.125-linuxkit
+Operating System: Docker for Mac
+OSType: linux
+Architecture: x86_64
+CPUs: 4
+Total Memory: 1.952GiB
+Name: linuxkit-025000000001
+ID: LSU7:HE7L:4TUR:HM2I:DRZI:XZE2:SRT5:DJMJ:CHJI:2VFE:2NJY:YCKE
+Docker Root Dir: /var/lib/docker
+Debug Mode (client): false
+Debug Mode (server): true
+ File Descriptors: 26
+ Goroutines: 53
+ System Time: 2019-05-24T03:28:11.714349609Z
+ EventsListeners: 2
+HTTP Proxy: gateway.docker.internal:3128
+HTTPS Proxy: gateway.docker.internal:3129
+Registry: https://index.docker.io/v1/
+Labels:
+Experimental: false
+Insecure Registries:
+ 127.0.0.0/8
+Live Restore Enabled: false
+Product License: Community Engine
+
+Matthews-MacBook-Pro:~ matthewshields$ ls
+AT.postflight.13190		Library				Public				node-3-mini
+Adlm				Movies				Roll a Ball			node-3-playground
+Applications			Music				Untitled.ipynb			node_modules
+CoherentLabs			My Games			Washiyama Temple Explorer	package-lock.json
+Creative Cloud Files		New Unity Project		cache				yarn-error.log
+Desktop				Pictures			docker-compose.yml
+Documents			PolyBrush Test			docker.env
+Downloads			Projects			hello-world
+Matthews-MacBook-Pro:~ matthewshields$ cd Documents/Code/
+Matthews-MacBook-Pro:Code matthewshields$ ls
+2019 Job Search	C# ASP.NET CORE	DevMountain	Heroku App	Java		Projects	oforce
+Angular		CodeWars	Downloads	Installed	MongoDB		Unity3D		tech-interviews
+Bootcamp Search	Data Science	Elixir		JS		PWAs		docker
+Matthews-MacBook-Pro:Code matthewshields$ cd docker/
+Matthews-MacBook-Pro:docker matthewshields$ cd docker-get-started/
+Matthews-MacBook-Pro:docker-get-started matthewshields$ touch Dockerfile
+Matthews-MacBook-Pro:docker-get-started matthewshields$ nano Dockerfile 
+Matthews-MacBook-Pro:docker-get-started matthewshields$ touch requirements.txt
+Matthews-MacBook-Pro:docker-get-started matthewshields$ nano requirements.txt 
+Matthews-MacBook-Pro:docker-get-started matthewshields$ touch app.py
+Matthews-MacBook-Pro:docker-get-started matthewshields$ nano app.py
+Matthews-MacBook-Pro:docker-get-started matthewshields$ ls
+Dockerfile		app.py			requirements.txt
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker build --tag=friendlyhello 
+"docker build" requires exactly 1 argument.
+See 'docker build --help'.
+
+Usage:  docker build [OPTIONS] PATH | URL | -
+
+Build an image from a Dockerfile
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+hello-world         latest              fce289e99eb9        4 months ago        1.84kB
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker build --tag=friendlyhello .
+Sending build context to Docker daemon   5.12kB
+Step 1/7 : FROM python:2.7-slim
+2.7-slim: Pulling from library/python
+743f2d6c1f65: Pull complete 
+9bfbedfce8de: Pull complete 
+7f4da2474cef: Pull complete 
+ffc893575679: Pull complete 
+Digest: sha256:686bc67cbebf4c4fb0d96d55650d8704d00ccb6b9c6bdd0bee5fad48b827a6cb
+Status: Downloaded newer image for python:2.7-slim
+ ---> eb40dcfcbc42
+Step 2/7 : WORKDIR /app
+ ---> Running in fdc1b2bc95d1
+Removing intermediate container fdc1b2bc95d1
+ ---> b8e623548211
+Step 3/7 : COPY . /app
+ ---> 3586f26aa2d8
+Step 4/7 : RUN pip install --trusted-host pypi.python.org -r requirements.txt
+ ---> Running in eb356594af52
+DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won't be maintained after that date. A future version of pip will drop support for Python 2.7.
+Collecting Flask (from -r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/9a/74/670ae9737d14114753b8c8fdf2e8bd212a05d3b361ab15b44937dfd40985/Flask-1.0.3-py2.py3-none-any.whl (92kB)
+Collecting Redis (from -r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/ac/a7/cff10cc5f1180834a3ed564d148fb4329c989cbb1f2e196fc9a10fa07072/redis-3.2.1-py2.py3-none-any.whl (65kB)
+Collecting itsdangerous>=0.24 (from Flask->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/76/ae/44b03b253d6fade317f32c24d100b3b35c2239807046a4c953c7b89fa49e/itsdangerous-1.1.0-py2.py3-none-any.whl
+Collecting Jinja2>=2.10 (from Flask->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/1d/e7/fd8b501e7a6dfe492a433deb7b9d833d39ca74916fa8bc63dd1a4947a671/Jinja2-2.10.1-py2.py3-none-any.whl (124kB)
+Collecting Werkzeug>=0.14 (from Flask->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/9f/57/92a497e38161ce40606c27a86759c6b92dd34fcdb33f64171ec559257c02/Werkzeug-0.15.4-py2.py3-none-any.whl (327kB)
+Collecting click>=5.1 (from Flask->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/fa/37/45185cb5abbc30d7257104c434fe0b07e5a195a6847506c074527aa599ec/Click-7.0-py2.py3-none-any.whl (81kB)
+Collecting MarkupSafe>=0.23 (from Jinja2>=2.10->Flask->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/fb/40/f3adb7cf24a8012813c5edb20329eb22d5d8e2a0ecf73d21d6b85865da11/MarkupSafe-1.1.1-cp27-cp27mu-manylinux1_x86_64.whl
+Installing collected packages: itsdangerous, MarkupSafe, Jinja2, Werkzeug, click, Flask, Redis
+Successfully installed Flask-1.0.3 Jinja2-2.10.1 MarkupSafe-1.1.1 Redis-3.2.1 Werkzeug-0.15.4 click-7.0 itsdangerous-1.1.0
+Removing intermediate container eb356594af52
+ ---> 63c2ca63f18c
+Step 5/7 : EXPOSE 80
+ ---> Running in 79618e6f6136
+Removing intermediate container 79618e6f6136
+ ---> cf841f21215d
+Step 6/7 : ENV NAME World
+ ---> Running in 9dfbf1a6bbad
+Removing intermediate container 9dfbf1a6bbad
+ ---> 0c8ee2c60832
+Step 7/7 : CMD ["python", "app.py"]
+ ---> Running in 0f1d91246091
+Removing intermediate container 0f1d91246091
+ ---> cf5d180451cb
+Successfully built cf5d180451cb
+Successfully tagged friendlyhello:latest
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+friendlyhello       latest              cf5d180451cb        21 seconds ago      131MB
+python              2.7-slim            eb40dcfcbc42        2 weeks ago         120MB
+hello-world         latest              fce289e99eb9        4 months ago        1.84kB
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker run -p 4000:80 friendlyhello
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+172.17.0.1 - - [24/May/2019 03:44:12] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [24/May/2019 03:44:12] "GET /favicon.ico HTTP/1.1" 404 -
+docker run -d -p 4000:80 friendlyhello
+172.17.0.1 - - [24/May/2019 03:45:26] "GET / HTTP/1.1" 200 -
+^[[A^X^CMatthews-MacBook-Pro:docker-get-started matthewshields$ 
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker run -d -p 4000:80 friendlyhello
+853d354311e4c1d8d05c1c7c5b4a3b8e5db40a606a2c5f4e86e29a082ce03f81
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: mdshields7
+Password: 
+Login Succeeded
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                  NAMES
+853d354311e4        friendlyhello       "python app.py"     2 minutes ago       Up 2 minutes        0.0.0.0:4000->80/tcp   elastic_minsky
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker container stop 853d354311e4
+853d354311e4
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker -p
+unknown shorthand flag: 'p' in -p
+See 'docker --help'.
+
+Usage:	docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/Users/matthewshields/.docker")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/Users/matthewshields/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/Users/matthewshields/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/Users/matthewshields/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  checkpoint  Manage checkpoints
+  config      Manage Docker configs
+  container   Manage containers
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  deploy      Deploy a new stack or update an existing stack
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker image
+
+Usage:	docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker image ls
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+friendlyhello       latest              cf5d180451cb        6 minutes ago       131MB
+python              2.7-slim            eb40dcfcbc42        2 weeks ago         120MB
+hello-world         latest              fce289e99eb9        4 months ago        1.84kB
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker tag image mdshields7/get-started-p2
+Error response from daemon: No such image: image:latest
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker tag friendlyhello  mdshields7/get-started-p2
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker image ls
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+friendlyhello               latest              cf5d180451cb        8 minutes ago       131MB
+mdshields7/get-started-p2   latest              cf5d180451cb        8 minutes ago       131MB
+python                      2.7-slim            eb40dcfcbc42        2 weeks ago         120MB
+hello-world                 latest              fce289e99eb9        4 months ago        1.84kB
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker push mdshields7/get-started-ps
+The push refers to repository [docker.io/mdshields7/get-started-ps]
+An image does not exist locally with the tag: mdshields7/get-started-ps
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker push mdshields7/get-started-p2
+The push refers to repository [docker.io/mdshields7/get-started-p2]
+9d7dffd70fd2: Pushed 
+d1c90242c522: Pushed 
+341eba520294: Pushed 
+0ec0d723449a: Mounted from library/python 
+5c78e81a8fd9: Mounted from library/python 
+7b6b548a54d0: Mounted from library/python 
+6270adb5794c: Mounted from library/python 
+latest: digest: sha256:78631ac00705bd7753ae3ac1667c78b58064607207af028010280390a7bdf2b6 size: 1787
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker run -p 4000:80 mdshields7/get-started-p2
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)

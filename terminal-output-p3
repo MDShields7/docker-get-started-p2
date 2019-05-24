@@ -1,0 +1,158 @@
+Last login: Fri May 24 13:26:32 on ttys004
+Matthews-MacBook-Pro:~ matthewshields$ ls
+AT.postflight.13190		Projects
+Adlm				Public
+Applications			Roll a Ball
+CoherentLabs			Untitled.ipynb
+Creative Cloud Files		Washiyama Temple Explorer
+Desktop				cache
+Documents			docker-compose.yml
+Downloads			docker.env
+Library				hello-world
+Movies				node-3-mini
+Music				node-3-playground
+My Games			node_modules
+New Unity Project		package-lock.json
+Pictures			yarn-error.log
+PolyBrush Test
+Matthews-MacBook-Pro:~ matthewshields$ cd Documents/Code/
+Matthews-MacBook-Pro:Code matthewshields$ ls
+2019 Job Search	Data Science	Installed	Projects
+Angular		DevMountain	JS		Unity3D
+Bootcamp Search	Downloads	Java		docker
+C# ASP.NET CORE	Elixir		MongoDB		oforce
+CodeWars	Heroku App	PWAs		tech-interviews
+Matthews-MacBook-Pro:Code matthewshields$ cd docker/
+Matthews-MacBook-Pro:docker matthewshields$ ls
+docker-get-started
+Matthews-MacBook-Pro:docker matthewshields$ cd docker-get-started/
+Matthews-MacBook-Pro:docker-get-started matthewshields$ ls
+Dockerfile		app.py			terminal-output
+Get-Started-Part-2.pdf	requirements.txt
+Matthews-MacBook-Pro:docker-get-started matthewshields$ touch docker-compose.yml
+Matthews-MacBook-Pro:docker-get-started matthewshields$ nano docker-compose.yml 
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker image ls
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+friendlyhello               latest              cf5d180451cb        15 hours ago        131MB
+mdshields7/get-started-p2   latest              cf5d180451cb        15 hours ago        131MB
+python                      2.7-slim            eb40dcfcbc42        2 weeks ago         120MB
+hello-world                 latest              fce289e99eb9        4 months ago        1.84kB
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker run -p 4000:80 mdshields7/get=started-p2
+docker: invalid reference format.
+See 'docker run --help'.
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker run -p 4000:80 mdshields7/get-started-p2
+
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+^CMatthews-MacBook-Pro:docker-get-started matthewshields$ docker run -d -p  4000:80 mdshields7/get-started-p2
+docker: invalid publish opts format (should be name=value but got '-d').
+See 'docker run --help'.
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker run -d -p  4000:80 mdshields7/get-started-p2
+6258c5062e208e213cb8d866de0eae3f3affe73a8eeb51bea2921c89d707f18d
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docket image ls
+-bash: docket: command not found
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker image ls
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+mdshields7/get-started-p2   latest              cf5d180451cb        15 hours ago        131MB
+friendlyhello               latest              cf5d180451cb        15 hours ago        131MB
+python                      2.7-slim            eb40dcfcbc42        2 weeks ago         120MB
+hello-world                 latest              fce289e99eb9        4 months ago        1.84kB
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker container stop 6258c5062e208e213cb8d866de0eae3f3affe73a8eeb51bea2921c89d707f18d
+6258c5062e208e213cb8d866de0eae3f3affe73a8eeb51bea2921c89d707f18d
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker inage ls
+docker: 'inage' is not a docker command.
+See 'docker --help'
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker image ls
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+friendlyhello               latest              cf5d180451cb        15 hours ago        131MB
+mdshields7/get-started-p2   latest              cf5d180451cb        15 hours ago        131MB
+python                      2.7-slim            eb40dcfcbc42        2 weeks ago         120MB
+hello-world                 latest              fce289e99eb9        4 months ago        1.84kB
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker run -d -p  4000:80 mdshields7/get-started-p2
+874a8b9378d4c3a1480442d6c7f7bc7de2e9d44eb86fa87a3f8a13ec2f69cbbc
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker image ls
+REPOSITORY                  TAG                 IMAGE ID            CREATED             SIZE
+friendlyhello               latest              cf5d180451cb        15 hours ago        131MB
+mdshields7/get-started-p2   latest              cf5d180451cb        15 hours ago        131MB
+python                      2.7-slim            eb40dcfcbc42        2 weeks ago         120MB
+hello-world                 latest              fce289e99eb9        4 months ago        1.84kB
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker container stop 874a8b9378d4c3a1480442d6c7f7bc7de2e9d44eb86fa87a3f8a13ec2f69cbbc
+874a8b9378d4c3a1480442d6c7f7bc7de2e9d44eb86fa87a3f8a13ec2f69cbbc
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker swarm init
+Swarm initialized: current node (iye702soj8y6ldb2es1htbfh1) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-2a9hnq6ktujclpj2jrsa44c637lcig2ke06nmwc6bz6la9fj1v-9fr2q232axs1on4lml2o9djtt 192.168.65.3:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker stack deploy -c docker-compose.yml getstartedlab
+Creating network getstartedlab_webnet
+Creating service getstartedlab_web
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE                              PORTS
+vh8sava2jek1        getstartedlab_web   replicated          5/5                 mdshields7/get-started-p2:latest   *:4000->80/tcp
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker stack services
+"docker stack services" requires exactly 1 argument.
+See 'docker stack services --help'.
+
+Usage:  docker stack services [OPTIONS] STACK
+
+List the services in the stack
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker stack services getstartedlab
+ID                  NAME                MODE                REPLICAS            IMAGE                              PORTS
+vh8sava2jek1        getstartedlab_web   replicated          5/5                 mdshields7/get-started-p2:latest   *:4000->80/tcp
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker service ps getstartedlab_web
+ID                  NAME                  IMAGE                              NODE                    DESIRED STATE       CURRENT STATE                ERROR               PORTS
+trfgrss0xty7        getstartedlab_web.1   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running about a minute ago                       
+3zrput1j1ic6        getstartedlab_web.2   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running about a minute ago                       
+lvpxent5okb0        getstartedlab_web.3   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running about a minute ago                       
+xswa7qqupk9j        getstartedlab_web.4   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running about a minute ago                       
+lvie9b51fn8s        getstartedlab_web.5   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running about a minute ago                       
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker container ls -q
+415c003ddc24
+1d7a42db7310
+1ec20556fb99
+334d02e7721b
+ab4140c7ea9f
+Matthews-MacBook-Pro:docker-get-started matthewshields$ curl -4 http://localhost:4000
+<h3>Hello World!</h3><b>Hostname:</b> 415c003ddc24<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>Matthews-MacBook-Pro:docker-get-started matthewshields$ 
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker stack ps
+"docker stack ps" requires exactly 1 argument.
+See 'docker stack ps --help'.
+
+Usage:  docker stack ps [OPTIONS] STACK
+
+List the tasks in the stack
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker stack ps getstartedlab
+ID                  NAME                  IMAGE                              NODE                    DESIRED STATE       CURRENT STATE           ERROR               PORTS
+trfgrss0xty7        getstartedlab_web.1   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running 4 minutes ago                       
+3zrput1j1ic6        getstartedlab_web.2   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running 4 minutes ago                       
+lvpxent5okb0        getstartedlab_web.3   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running 4 minutes ago                       
+xswa7qqupk9j        getstartedlab_web.4   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running 4 minutes ago                       
+lvie9b51fn8s        getstartedlab_web.5   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running 4 minutes ago                       
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker stack deploy -c docker-compose.yml getstartedlab
+Updating service getstartedlab_web (id: vh8sava2jek16b6je9zshy971)
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker container ls -q
+79defddf041f
+415c003ddc24
+1d7a42db7310
+1ec20556fb99
+334d02e7721b
+ab4140c7ea9f
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker stack ps getstartedlab
+ID                  NAME                  IMAGE                              NODE                    DESIRED STATE       CURRENT STATE            ERROR               PORTS
+trfgrss0xty7        getstartedlab_web.1   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running 4 minutes ago                        
+3zrput1j1ic6        getstartedlab_web.2   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running 4 minutes ago                        
+lvpxent5okb0        getstartedlab_web.3   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running 4 minutes ago                        
+xswa7qqupk9j        getstartedlab_web.4   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running 4 minutes ago                        
+lvie9b51fn8s        getstartedlab_web.5   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running 4 minutes ago                        
+zf6xm62sf4qv        getstartedlab_web.6   mdshields7/get-started-p2:latest   linuxkit-025000000001   Running             Running 12 seconds ago                       
+Matthews-MacBook-Pro:docker-get-started matthewshields$ docker swarm leave --force
+Node left the swarm.
+Matthews-MacBook-Pro:docker-get-started matthewshields$ 
